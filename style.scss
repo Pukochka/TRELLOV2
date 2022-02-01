@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+$TR: .3s ease all;
+$ff:'Raleway';
+body{
+    font-family :$ff ;
+    background-color: #EBE2DC;
+    height: 718px;
+    position: relative;
+    overflow-x: hidden;
+}
+.wrapper{
+    // max-width: 1200px;
+    // margin: 0 auto;
+    padding: 50px 15px 0 15px;
+}
+.menu{
+    width: 100%;
+    height: 50px;
+}
+.margin{
+    margin-top: 15px;
+}
+.buttons{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &_item{
+        padding: 10px;
+        font-weight: 500;
+        font-size: 22px;
+        border-radius: 5px;
+        background-color: #478dd5;
+        box-shadow: 0 0 12px #478dd5;
+        color: #fff;
+        cursor: pointer;
+        transition: $TR;
+        &:hover{
+            background-color: #60bdcf;
+        }
+    }
+}
+.tasks{
+    //special style
+    min-height: 600px;
+    overflow-x: scroll;
+    padding-top: 40px;
+    display: flex;
+    transition: .3s ease;
+    user-select: none;
+    position: relative;
+    transition: .3s ease all;
+    &::-webkit-scrollbar{
+        background-color: transparent;
+        height: 7px;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: rgba(173, 166, 166, 0.781);
+        border-radius: 5px;
+    }
+    &_item{
+        scroll-snap-align: start;
+        min-width: 20%;
+        max-width: 20%;
+        height: auto;
+        padding: 10px 15px 10px 15px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 12px #fff;
+        margin-top: 10px;
+        position: absolute;
+        transition: .3s ease all;
+        & + & {
+            margin-left: 10px;
+        }
+    }
+    &_header{
+        border-radius: 10px;
+        color: #222;
+        max-width: 90%;
+        font-size: 20px;
+        font-weight: 800;
+    }
+    &_description{
+        color:#111;
+        font-size: 18px;
+        font-weight: 500;
+        word-wrap: break-word;
+        max-width: 100%;
+    }
+    &_ready{
+        &_header{
+            font-size: 18px;
+            color: #111;
+            font-weight: 500;
+        }
+        & ul{
+            list-style-type: none;
+            margin-top: 10px;
+            & > li{
+                position: relative;  
+                background-color: rgb(212, 209, 209);  
+                border-radius: 8px;     
+                margin-top: 10px;
+            }
+        }
+    }
+    &_notready{
+        &_header{
+            font-weight: 500;
+            font-size: 18px;
+        }
+        & ul{
+            list-style-type: none;
+            margin-top: 10px;
+            & > li{
+                position: relative;      
+                &::after{
+                    width: 20px;
+                    height: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    content: '-';
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    font-size: 30px;
+                    transition: $TR;
+                    cursor: pointer;
+                    z-index: 50;
+                }
+            }
+        }
+    }
+    &_append{
+        color: #111;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-weight: 500;
+        font-size: 16px;
+        cursor: pointer;
+        transition: $TR;
+        &_span{
+            width: 16px;
+            height: 16px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url(./img/plus.svg);
+        }
+    }
+}
+.arrow{
+    width: 18px;
+    height:18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./img/arrow.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 6px;
+    right: 5px;
+    border: solid  3px transparent;
+    transition: $TR;
+    transform: rotate(0deg) ;
+    cursor: pointer;
+}
+.arrow.active{
+    top: 2px;
+    transform: rotate(180deg);
+}
+.ready{
+    &_img{
+        background-color: gold;
+        width: 95%;
+        margin: auto; 
+        height: 0;
+        border-radius: 8px;
+        margin-bottom: 18px;
+        transform: translateY(18px);
+        transition: $TR;
+    }
+    &_container{
+        display: flex;
+        justify-content: space-evenly;
+        padding: 5px;
+        max-width: 70%;
+    }
+    &_header{
+        font-weight: 500;
+    }
+}
+.ready_img.active{
+    height: 100px;
+}
+.settings{
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: #BFD8DD, $alpha: .5);
+    transition: .3s ease opacity;
+    &_bar{
+        width: 40%;
+        min-height: 40%;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 12px #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        &_item{
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            & label{
+                font-weight: 500;
+            }
+            & button{
+                border: none;
+                outline: none;
+                background-color: rgb(170, 170, 170);
+                padding: 10px 20px;
+                font-size: 20px;
+                font-weight: 500;
+                border-radius: 6px;
+                transition: $TR;
+                cursor: pointer;
+                color: #fff;
+                box-shadow: 0 0 12px rgb(170, 170, 170);
+                &:hover{
+                    background-color: rgb(236, 236, 236);
+                    color: #666;
+                }
+            }
+            & + &{
+                margin-top: 20px;
+            }
+        }
+    }
+}
+.settings.active{
+    opacity: 1;
+    visibility: visible;
+}
+#header{
+    outline: none;
+    border: none;
+    border-bottom:solid #333 2px;
+    font-size: 20px;
+    padding: 5px;
+    &:focus{
+        border-bottom:solid #666 2px;
+    }
+}
+#description{
+    font-family: $ff;
+    font-size: 18px;
+    padding: 5px;
+    resize: vertical;
+    outline: none;
+    min-height: 100px;
+    border-radius: 6px;
+}
+#addList{
+    outline: none;
+    border: none;
+    border-bottom:solid #333 2px;
+    font-size: 20px;
+    padding: 5px;
+    &:focus{
+        border-bottom:solid #666 2px;
+    }
+}
+.close_bar{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #000;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    transform: rotate(45deg);
+    transition: $TR;
+    user-select: none;
+    cursor: pointer;
+    &:hover{
+        color: rgb(119, 119, 119);
+    }
+}
+.close_append{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #000;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    transform: rotate(45deg);
+    transition: $TR;
+    user-select: none;
+    cursor: pointer;
+    &:hover{
+        color: rgb(119, 119, 119);
+    }
+}
+.close_item{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #000;
+    width: 18px;
+    height: 18px;
+    transition: $TR;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(./img/menu.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: rotate(90deg);
+}
+.append{
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-color: rgba(193, 220, 226, 0.692);
+    transition: .3s ease opacity;
+    &_container{
+        padding: 20px;
+        width: 30%;
+        height: 30%;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        position: relative;
+    }
+    &_item{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        & button{
+            outline: none;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 20px;
+            background-color: rgb(114, 114, 114);
+            color: #fff;
+            box-shadow: 0 0 12px rgb(114, 114, 114);
+            transition: .3s ease background-color;
+            &:hover{
+                background-color: rgb(207, 206, 206);
+                color: rgb(128, 126, 126);
+            }
+        }
+    }
+}
+.append.active{
+    opacity: 1;
+    visibility: visible;
+}
+.sure{
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 33%;
+    top: 0;
+    left: 0;
+    background-color: rgb(231, 175, 175);
+    border-radius: 5px;
+    transition: .3s ease-in-out opacity;
+    & p {
+        padding: 10px 10px 0px 10px;
+        
+    }
+    &_btns{
+        display: flex;
+        justify-content: center;
+    }
+    &_item{
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        & + &{
+            margin-left: 10px;
+        }
+    }
+}
+.sure.active{
+    opacity: 1;
+    visibility: visible;
+}
+.yes{
+    background-color: rgb(155, 27, 27);
+    color: #fff;
+}
+.no{
+    background-color: rgb(146, 146, 146);
+    color: #fff;
+}
+#maket{
+    width: 0;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+}
+#appendItem{
+    &:hover{
+        background-color: #fff;
+    }
+}

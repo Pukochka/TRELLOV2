@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRELLOV2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="settings">
+        <div class="settings_bar">
+            <span class="close_bar closes">+</span>
+            <div class="settings_bar_item">
+                <label for="header">Название блока</label>
+                <input id="header" type="text" name="header" maxlength="20">
+            </div>
+            <div class="settings_bar_item">
+                <label for="description">Описание</label>
+                <textarea id="description" name="description" id=""></textarea>
+            </div>
+            <div class="settings_bar_item">
+                <button id='main'>Создать</button>
+            </div>
+        </div>
+    </div>
+    <div class="append">
+        <div class="append_container">
+            <span class="close_append closess">+</span>
+            <div class="append_item">
+                <label for="header">Название пункта</label>
+                <input id="addList" type="text" name="header" maxlength="20">
+            </div>
+            <div class="append_item">
+                <button id="appendItem">Добавить</button>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="menu">
+            <div class="buttons">
+                <div class="buttons_item addd">Добавить говый блок с задачами</div>
+                <!-- <div class="calend"><input type="date"></div> -->
+            </div>
+        </div>
+        <div class="tasks">
+        </div>
+    </div>
+    <div id="maketLi">
+        <span class="arrow"></span>
+        <div class="ready_img"></div>
+        <div class="ready_container">
+            <p class="ready_date"><span class="ready_date"></span></p>
+            <p class="ready_header"></p>
+            <p class="ready_condition"><span class="ready_condition"></span></p>
+        </div>
+    </div>
+    <div id="maket">
+        <div class="tasks_item">
+            <div class="close_item close sur">
+            </div>
+            <div class="sure">
+                <p>Вы уверены, что хотите удалить задачу?</p>
+                <div class="sure_btns">
+                    <div class="sure_item yes">Да</div>
+                    <div class="sure_item no">Отмена</div>
+                </div>
+            </div>
+            <div class="tasks_header">Header</div>
+            <div class="tasks_description margin">Description</div>
+            <div class="tasks_ready margin">
+                <p class="tasks_ready_header">Задачи</p>
+                <ul class="ready">
+                </ul>
+            </div>
+            <div class="tasks_append margin add">
+                <p>Добавить новую задачу</p> 
+                <span class="tasks_append_span"></span></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
